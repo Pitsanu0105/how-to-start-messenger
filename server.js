@@ -26,6 +26,9 @@ app.post('/webhook/', function (req, res) {
       let text = event.message.text
       var location = event.message.text
      var weatherEndpoint = 'http://api.openweathermap.org/data/2.5/weather?q=' +location+ '&units=metric&appid=a825cae8445cd13d4fc1329eaa4b2856'
+     if ((location === "thank you" )||(location === "Thank you" )||(location === "thanks" )) {
+        sendTextMessage(sender, "It's my pleasure.");
+     } else {
      request({
        url: weatherEndpoint,
        json: true
@@ -40,6 +43,7 @@ app.post('/webhook/', function (req, res) {
          sendTextMessage(sender, "What do you say. Please try again.");
        }
      })
+   }
       if (text === 'Generic') {
         sendGenericMessage(sender)
         continue
