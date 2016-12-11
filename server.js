@@ -32,10 +32,10 @@ app.post('/webhook/', function (req, res) {
      }, function(error, response, body) {
        try {
          var condition = body.main;
-         sendTextMessage(sender, "Today in " + location + " is " + condition.temp + "Celsius" + weather.description);
+         sendTextMessage(sender, "Today in " + location + " is " + condition.temp + "Celsius");
        } catch(err) {
          console.error('error caught', err);
-         sendTextMessage(sender, "There was an error.");
+         sendTextMessage(sender, "What do you say. Please try again.");
        }
      })
       if (text === 'Generic') {
