@@ -34,7 +34,7 @@ app.post('/webhook/', function (req, res) {
          var condition = body.main;
          var lowcondition = body.main;
          var maxcondition = body.main;
-         sendTextMessage(sender, "Today in " + location + " is " + condition.temp + " Celsius " + " ืinimum temperature is " + lowcondition.temp_min + " and maximum temperature is " + maxcondition.temp_max);
+         sendTextMessage(sender, "Today in " + location + " is " + condition.temp + " Celsius " + " minimum temperature is " + lowcondition.temp_min + " Celsius and maximum temperature is " + maxcondition.temp_max + " Celsius ");
        } catch(err) {
          console.error('error caught', err);
          sendTextMessage(sender, "What do you say. Please try again.");
