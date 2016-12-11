@@ -32,7 +32,8 @@ app.post('/webhook/', function (req, res) {
      }, function(error, response, body) {
        try {
          var condition = body.main;
-         sendTextMessage(sender, "Today in " + location + " is " + condition.temp + "Celsius");
+         var des = body.weather;
+         sendTextMessage(sender, "Today in " + location + " is " + condition.temp + " Celsius " + des.description);
        } catch(err) {
          console.error('error caught', err);
          sendTextMessage(sender, "What do you say. Please try again.");
@@ -125,3 +126,4 @@ function sendGenericMessage (sender) {
 app.listen(app.get('port'), function () {
   console.log('running on port', app.get('port'))
 })
+
