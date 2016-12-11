@@ -17,6 +17,20 @@ app.get('/webhook/', function (req, res) {
   }
   res.send('Error, wrong token')
 })
+var locations = event.message.text
+var weatherEndpoint = 'http://api.openweathermap.org/data/2.5/weather?q=' +locations+ '&units=metric&appid=a825cae8445cd13d4fc1329eaa4b2856'
+request({
+  url: weatherEndpoint,
+  json: true
+}, function(error, response, body) {
+  try {
+    var condition = body.main;
+    sendTextMessage(sender, "Today is " + condition.temp + "Celsius in " + location);
+  } catch(err) {
+    console.error('error caught', err);
+    sendTextMessage(sender, "There was an error.");
+  }
+})
 app.post('/webhook/', function (req, res) {
   let messaging_events = req.body.entry[0].messaging
   for (let i = 0; i < messaging_events.length; i++) {
@@ -38,6 +52,8 @@ app.post('/webhook/', function (req, res) {
   }
   res.sendStatus(200)
 })
+
+
 
 function sendTextMessage (sender, text) {
   let messageData = { text: text }
