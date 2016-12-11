@@ -28,6 +28,8 @@ app.post('/webhook/', function (req, res) {
      var weatherEndpoint = 'http://api.openweathermap.org/data/2.5/weather?q=' +location+ '&units=metric&appid=a825cae8445cd13d4fc1329eaa4b2856'
      if ((location === "thank you" )||(location === "Thank you" )||(location === "thanks" )) {
         sendTextMessage(sender, "It's my pleasure.");
+     } else if ((location === "fuck" )||(location === "Fuck" )||(location === "ควย" )||(location === "kuy" )||(location === "กาก" )) {
+       sendTextMessage(sender, "You Suck");
      } else {
      request({
        url: weatherEndpoint,
